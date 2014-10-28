@@ -44,7 +44,10 @@ window.fbAsyncInit = function() {
 <div>You have completed <span id="questCount">0</span> quests.</div>
 <button id="start">Start Quest</button>
 <div id="progressbar"></div>
-<button id="complete" style="display:none;">Complete Quest</button>
+<div id="onComplete" style="display:none;">
+<input id="share" type="checkbox" checked="checked">Share completing this quest to Facebook</input>
+<button id="complete">Complete Quest</button>
+</div>
 <script>
 $(function() {
   var time = 0;
@@ -59,7 +62,7 @@ $(function() {
       time += 100;
       if(time > completeTime) {
         clearInterval(questComplete);
-        $("#complete").show();
+        $("#onComplete").show();
         time = 0;
       }
     }, 100);
@@ -68,10 +71,15 @@ $(function() {
 
   $("#complete").click(function() {
     $("#start").attr("disabled", false);
-    $("#complete").hide();
+    $("#onComplete").hide();
     quests += 1;
     $("#questCount").text(quests);
-  })
+    if($("#share").is(":checked") == true) {
+      window.teak.postAction("complete", "quest", "quest1", {"fb:explicitly_shared" : true});
+    } else {
+      window.teak.postAction("complete", "quest", "quest1", {"teak:no_post" : true});
+    }
+  });
 });
 </script>
 </body>
