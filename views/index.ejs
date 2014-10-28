@@ -11,6 +11,35 @@
 (function(){window.teak=window.teak||[];window.teak.methods=["init","identify","postAction","postAchievement","postHighScore","canMakeFeedPost","popupFeedPost","reportNotificationClick","reportFeedClick","sendRequest","acceptRequest"];window.teak.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);window.teak.push(t);return window.teak}};for(var e=0;e<window.teak.methods.length;e++){var t=window.teak.methods[e];window.teak[t]=window.teak.factory(t)}var n=document.createElement("script");n.type="text/javascript";n.async=true;n.src="//d2h7sc2qwu171k.cloudfront.net/teak.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(n,r)})()
 window.teak.init("722345881174919", "d401a23dc6c8536736a88a1a570233a4");
 </script>
+<script>
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : "722345881174919",
+    status     : true,
+    xfbml      : true,
+    version    : "v2.1"
+  });
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+    }
+    else if (response.status === 'not_authorized') {
+      // Do redirect to authorize the app
+      window.top.location = "https://www.facebook.com/dialog/oauth?client_id=722345881174919&redirect_uri=https://apps.facebook.com/722345881174919/&scope=email,publish_actions";
+    }
+    else {
+      alert("User not logged in to Facebook");
+    }
+  });
+};
+
+(function(d, s, id){
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) {return;}
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/sdk.js";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <div>You have completed <span id="questCount">0</span> quests.</div>
 <button id="start">Start Quest</button>
 <div id="progressbar"></div>
