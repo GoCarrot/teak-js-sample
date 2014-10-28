@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Progress Quest - Teak Sample</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+</head>
+<body>
+<div>You have completed <span id="questCount">0</span> quests.</div>
+<button id="start">Start Quest</button>
+<div id="progressbar"></div>
+<button id="complete" style="display:none;">Complete Quest</button>
+<script>
+$(function() {
+  var time = 0;
+  var completeTime = 5000;
+  var quests = 0;
+
+  $("#start").click(function() {
+    var questComplete = setInterval(function() {
+      $("#progressbar").progressbar({
+        value: time / completeTime * 100
+      });
+      time += 100;
+      if(time > completeTime) {
+        clearInterval(questComplete);
+        $("#complete").show();
+        time = 0;
+      }
+    }, 100);
+    $("#start").attr("disabled", true);
+  });
+
+  $("#complete").click(function() {
+    $("#start").attr("disabled", false);
+    $("#complete").hide();
+    quests += 1;
+    $("#questCount").text(quests);
+  })
+});
+</script>
+</body>
+</html>
