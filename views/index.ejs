@@ -75,7 +75,7 @@ $(function() {
     quests += 1;
     $("#questCount").text(quests);
     if($("#share").is(":checked") == true) {
-      window.teak.postAction("complete", "quest", "quest1", {"fb:explicitly_shared" : true});
+      window.teak.postAction("complete", "quest", "quest1", {"fb:explicitly_shared" : true, "quest_count" : quests});
     } else {
       window.teak.postAction("complete", "quest", "quest1", {"teak:no_post" : true});
     }
