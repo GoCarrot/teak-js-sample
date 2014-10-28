@@ -21,6 +21,7 @@ window.fbAsyncInit = function() {
   });
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
+      window.teak.identify(response.authResponse.userID, response.authResponse.accessToken);
     }
     else if (response.status === 'not_authorized') {
       // Do redirect to authorize the app
